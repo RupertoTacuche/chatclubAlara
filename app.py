@@ -76,9 +76,10 @@ demo = gr.ChatInterface(
 )
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 7860))
     print(f"Documento cargado: {len(chunks)} fragmentos indexados")
     demo.launch(
         server_name="0.0.0.0",
-        server_port=7860,
+        server_port=port,
         theme="soft"
     )
