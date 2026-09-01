@@ -63,7 +63,7 @@ def respond(message, history):
 # Estilos CSS con la regla añadida específicamente para el título principal
 custom_css = """
 :root {
-    color-scheme: dark;
+    color-scheme: dark only;
 }
 body, html, .gradio-container {
     background-color: #0b2545 !important;
