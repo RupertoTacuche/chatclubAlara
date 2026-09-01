@@ -60,7 +60,7 @@ def respond(message, history):
     response = rag_chain.invoke(message)
     return response
 
-# Definición de estilos CSS mejorados para forzar el modo oscuro en móviles y PC
+# Estilos CSS globales inyectados correctamente a través de gr.Blocks
 custom_css = """
 :root {
     color-scheme: dark;
@@ -69,7 +69,6 @@ body, html, .gradio-container {
     background-color: #0b2545 !important;
     color: #ffffff !important;
 }
-/* Forzar contenedores internos en móviles */
 .gradio-container *, .contain, div, span, p, h1, h2, h3, label {
     color-scheme: dark;
 }
@@ -86,20 +85,19 @@ h1, h2, h3, p, span, label {
 }
 """
 
-demo = gr.ChatInterface(
-    fn=respond,
-    title="Club ToastMasters Alara - Chat Virtual",
-    description="Pregúntame sobre horarios, ubicación y más.",
-    examples=[
-        "¿Que día sesiona el club Alara?",
-        "¿Cuanto cuesta la membresia?",
-        "¿Quienes pueden pertenecer?",
-        "¿Cual es la tecnica para enseñar?",
-        "¿Que es y de que trata un club Toastmasters?",
-    ],
-    css=custom_css,
-    theme=gr.themes.Default()
-)
+with gr.Blocks(css=custom_css, theme=gr.themes.Default()) as demo:
+    gr.ChatInterface(
+        fn=respond,
+        title="Club ToastMasters Alara - Chat Virtual",
+        description="Pregúntame sobre horarios, ubicación y más.",
+        examples=[
+            "¿Que día sesiona el club Alara?",
+            "¿Cuanto cuesta la membresia?",
+            "¿Quienes pueden pertenecer?",
+            "¿Cual es la tecnica para enseñar?",
+            "¿Que es y de que trata un club Toastmasters?",
+        ]
+    )
 
 if __name__ == "__main__":
     print(f"Documento cargado: {len(chunks)} fragmentos indexados")
