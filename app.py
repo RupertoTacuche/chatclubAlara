@@ -60,7 +60,7 @@ def respond(message, history):
     response = rag_chain.invoke(message)
     return response
 
-# Estilos CSS globales inyectados correctamente a través de gr.Blocks
+# CSS diseñado para atrapar y corregir los botones de ejemplos y contenedores blancos
 custom_css = """
 :root {
     color-scheme: dark;
@@ -69,11 +69,32 @@ body, html, .gradio-container {
     background-color: #0b2545 !important;
     color: #ffffff !important;
 }
-.gradio-container *, .contain, div, span, p, h1, h2, h3, label {
-    color-scheme: dark;
+
+/* Forzar todo el bloque contenedor principal de Gradio a azul oscuro */
+.gradio-container, div.wrap, div.contain, .app {
+    background-color: #0b2545 !important;
 }
+
+/* Forzar que las tarjetas de ejemplos (las que encerraste en círculo) tengan fondo visible y texto legible */
+.examples button, button.sample, .gr-samples table td button {
+    background-color: #134074 !important;
+    border: 1px solid #8da9c4 !important;
+    color: #ffffff !important;
+}
+
+.examples button span, button.sample span, .gr-samples table td button span {
+    color: #ffffff !important;
+}
+
+/* Textos generales y títulos */
 h1, h2, h3, p, span, label {
     color: #ffffff !important;
+}
+
+/* Área del Chatbot y entradas */
+.chatbot {
+    background-color: #0b2545 !important;
+    border-color: #134074 !important;
 }
 .message.user {
     background-color: #134074 !important;
@@ -82,6 +103,10 @@ h1, h2, h3, p, span, label {
 .message.bot {
     background-color: #8da9c4 !important;
     color: #0b2545 !important;
+}
+textarea, input {
+    background-color: #134074 !important;
+    color: #ffffff !important;
 }
 """
 
