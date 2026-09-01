@@ -67,7 +67,7 @@ demo = gr.ChatInterface(
     title="Chat Inteligente del Club ToastMasters ALARA ",
     description="PregÃºntame sobre horarios, ubicaciÃ³n, eventos y mÃ¡s.",
     examples=[
-        "Â¿Cuál es el dia y horario en que sesiona el club Alara?",
+        "¿Cuál es el dia y horario en que sesiona el club Alara?",
         "¿Qué es Toastmasters?",
         "¿Cuál es el costo para ingresar al club Alara?",
         "¿Cuál es el método usado para enseñar a hablar en público?",
