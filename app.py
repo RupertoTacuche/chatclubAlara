@@ -60,17 +60,22 @@ def respond(message, history):
     response = rag_chain.invoke(message)
     return response
 
-# Definición de estilos CSS personalizados para fondo azul y texto blanco
+# Definición de estilos CSS mejorados para forzar el modo oscuro en móviles y PC
 custom_css = """
+:root {
+    color-scheme: dark;
+}
 body, html, .gradio-container {
     background-color: #0b2545 !important;
     color: #ffffff !important;
 }
-/* Cambiar color de textos generales, títulos y descripciones */
+/* Forzar contenedores internos en móviles */
+.gradio-container *, .contain, div, span, p, h1, h2, h3, label {
+    color-scheme: dark;
+}
 h1, h2, h3, p, span, label {
     color: #ffffff !important;
 }
-/* Estilo para las burbujas de chat o contenedores si es necesario */
 .message.user {
     background-color: #134074 !important;
     color: #ffffff !important;
