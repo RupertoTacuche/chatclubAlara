@@ -60,7 +60,7 @@ def respond(message, history):
     response = rag_chain.invoke(message)
     return response
 
-# CSS diseñado para atrapar y corregir los botones de ejemplos y contenedores blancos
+# Estilos CSS con la regla añadida específicamente para el título principal
 custom_css = """
 :root {
     color-scheme: dark;
@@ -70,12 +70,15 @@ body, html, .gradio-container {
     color: #ffffff !important;
 }
 
-/* Forzar todo el bloque contenedor principal de Gradio a azul oscuro */
 .gradio-container, div.wrap, div.contain, .app {
     background-color: #0b2545 !important;
 }
 
-/* Forzar que las tarjetas de ejemplos (las que encerraste en círculo) tengan fondo visible y texto legible */
+/* Forzar que el título principal de la cabecera sea blanco */
+h1, .gr-header h1, .prose h1, header h1 {
+    color: #ffffff !important;
+}
+
 .examples button, button.sample, .gr-samples table td button {
     background-color: #134074 !important;
     border: 1px solid #8da9c4 !important;
@@ -86,12 +89,10 @@ body, html, .gradio-container {
     color: #ffffff !important;
 }
 
-/* Textos generales y títulos */
-h1, h2, h3, p, span, label {
+h2, h3, p, span, label {
     color: #ffffff !important;
 }
 
-/* Área del Chatbot y entradas */
 .chatbot {
     background-color: #0b2545 !important;
     border-color: #134074 !important;
@@ -110,7 +111,7 @@ textarea, input {
 }
 """
 
-with gr.Blocks(css=custom_css, theme=gr.themes.Default()) as demo:
+with gr.Blocks() as demo:
     gr.ChatInterface(
         fn=respond,
         title="Club ToastMasters Alara - Chat Virtual",
@@ -128,5 +129,7 @@ if __name__ == "__main__":
     print(f"Documento cargado: {len(chunks)} fragmentos indexados")
     demo.launch(
         server_name="0.0.0.0",
-        server_port=int(os.environ.get("PORT", 7860))
+        server_port=int(os.environ.get("PORT", 7860)),
+        css=custom_css,
+        theme=gr.themes.Default()
     )
